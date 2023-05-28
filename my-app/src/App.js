@@ -1,11 +1,14 @@
 import React, { Component } from "react";
 import logoNUSBITE from "./logoNUSBITE.gif";
 import "./App.css";
+import Appbar from "./Appbar";
+import ResponsiveAppBar from "./Appbar";
 
 class App extends React.Component {
   render() {
     return (
       <div className="App">
+        <ResponsiveAppBar />
         <header className="App-header">
           <h1>NUS Bite</h1>
           <img src={logoNUSBITE} className="App-logo" />
