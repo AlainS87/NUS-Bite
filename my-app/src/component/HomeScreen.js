@@ -25,6 +25,7 @@ export const HomeScreen = () => {
             <div className="blank-between-button"></div>
 
             <button
+              onClick={() => navigate("Login")}
               className="App-login-button-hawker"
               href="https://reactjs.org"
             >

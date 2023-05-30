@@ -3,10 +3,18 @@ import { useState, useEffect } from 'react'
 import { createClient } from '@supabase/supabase-js'
 import { Auth } from '@supabase/auth-ui-react'
 import { ThemeSupa } from '@supabase/auth-ui-shared'
+import { supabase } from './supabaseData'
+import { Main } from './MainSreen'
 
-const supabase = createClient('https://<project>.supabase.co', '<your-anon-key>')
+//const supabase = createClient('https://<project>.supabase.co', '<your-anon-key>')
 
 export const Login = () => {
+    async function signInWithGoogle() {
+        const { data, error } = await supabase.auth.signInWithOAuth({
+          provider: 'google',
+          redirectTo: `http://localhost:3000/mainScreen`
+        })
+    }
   const [session, setSession] = useState(null)
 
   useEffect(() => {
@@ -24,9 +32,13 @@ export const Login = () => {
   }, [])
 
   if (!session) {
-    return (<Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} />)
+    return (<div>
+        <button onClick={signInWithGoogle}>
+            SignIn
+        </button>
+    </div>)
   }
   else {
-    return (<div>Logged in!</div>)
+    return (<Main />)
   }
 }
