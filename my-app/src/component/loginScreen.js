@@ -1,20 +1,17 @@
 import '/Users/hayashi/Desktop/Orbital2023/NUS-Bite-Orbital2023/my-app/src/index.css'
 import { useState, useEffect } from 'react'
-import { createClient } from '@supabase/supabase-js'
 import { Auth } from '@supabase/auth-ui-react'
 import { ThemeSupa } from '@supabase/auth-ui-shared'
 import { supabase } from './supabaseData'
-import { Main } from './MainSreen'
-
-//const supabase = createClient('https://<project>.supabase.co', '<your-anon-key>')
+import { useNavigate } from "react-router-dom";
 
 export const Login = () => {
-    async function signInWithGoogle() {
-        const { data, error } = await supabase.auth.signInWithOAuth({
-          provider: 'google',
-          redirectTo: `http://localhost:3000/mainScreen`
-        })
-    }
+  const navigate = useNavigate()
+  async function signInWithGoogle() {
+    const { data, error } = await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      })
+  }
   const [session, setSession] = useState(null)
 
   useEffect(() => {
@@ -39,6 +36,6 @@ export const Login = () => {
     </div>)
   }
   else {
-    return (<Main />)
+    return (navigate("mainScreen"))
   }
 }
