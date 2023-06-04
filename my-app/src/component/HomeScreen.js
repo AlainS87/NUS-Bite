@@ -4,6 +4,7 @@ import "/Users/hayashi/Desktop/Orbital2023/NUS-Bite-Orbital2023/my-app/src/App.j
 import { useNavigate } from "react-router-dom";
 import "/Users/hayashi/Desktop/Orbital2023/NUS-Bite-Orbital2023/my-app/src/App.css"
 import ResponsiveAppBar from "/Users/hayashi/Desktop/Orbital2023/NUS-Bite-Orbital2023/my-app/src/Appbar.js"
+import { HawkerLogin, hawkerLogin } from "./hawkerLogin";
 
 export const HomeScreen = () => {
   const navigate = useNavigate()
@@ -27,7 +28,7 @@ export const HomeScreen = () => {
             <div className="blank-between-button"></div>
 
             <button
-              onClick={() => navigate("Login")}
+              onClick={() => navigate("HawkerLogin")}
               className="App-login-button-hawker"
               href="https://reactjs.org"
             >
@@ -37,6 +38,7 @@ export const HomeScreen = () => {
         </table>
         <h2 className="or">—————OR—————</h2>
         <button
+          onClick={() => navigate("VisitorMain")}
           className="App-login-button-visitor"
           href="https://reactjs.org"
         >
@@ -44,39 +46,5 @@ export const HomeScreen = () => {
         </button>
       </header>
     </div>
-    // <div className="App">
-    //     <ResponsiveAppBar />
-    //     <header className="App-header">
-    //       <h1>NUS Bite</h1>
-    //       <img src={logoNUSBITE} className="App-logo" />
-    //       <h3 className="login-header">login as</h3>
-    //       <table className="id-table">
-    //         <tr>
-    //           <button
-    //             className="App-login-button-taster"
-    //             href="https://reactjs.org"
-    //           >
-    //             <b>NUS Tasters</b>
-    //           </button>
-
-    //           <div className="blank-between-button"></div>
-
-    //           <button
-    //             className="App-login-button-hawker"
-    //             href="https://reactjs.org"
-    //           >
-    //             <b>NUS Hawkers</b>
-    //           </button>
-    //         </tr>
-    //       </table>
-    //       <h2 className="or">—————OR—————</h2>
-    //       <button
-    //         className="App-login-button-visitor"
-    //         href="https://reactjs.org"
-    //       >
-    //         <b>NUS Visitor</b>
-    //       </button>
-    //     </header>
-    //   </div>
   )
 }

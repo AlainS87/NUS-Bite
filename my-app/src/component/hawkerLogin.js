@@ -3,28 +3,13 @@ import { useState, useEffect } from 'react'
 import { supabase } from './supabaseData'
 import { useNavigate } from "react-router-dom";
 
-export const Login = () => {
+export const HawkerLogin = () => {
   const navigate = useNavigate()
-    
   async function signInWithGoogle() {
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       })
   }
-//   async function signUp() {  
-//     return supabase.auth.signUp(
-//         {
-//         email: 'example@email.com',
-//         password: 'example-password',
-//         options: {
-//             data: {
-//             first_name: 'John',
-//             age: 27,
-//             }
-//         }
-//         }
-//     )
-//   }
   const [session, setSession] = useState(null)
 
   useEffect(() => {
@@ -44,11 +29,11 @@ export const Login = () => {
   if (!session) {
     return (<div>
         <button onClick={signInWithGoogle}>
-            Sign In
+            SignIn
         </button>
     </div>)
   }
   else {
-    return (navigate("mainScreen"))
+    return (navigate("HawkerMain"))
   }
 }
