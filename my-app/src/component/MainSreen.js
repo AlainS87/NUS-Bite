@@ -6,26 +6,24 @@ import "../MainScreen.css";
 import { useNavigate } from "react-router-dom";
 
 export const Main = () => {
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
   return (
     <div className="fullscreen">
       <ResponsiveAppBar />
       <div className="Hawker-Rater">
-        <button
-          //onClick={() => navigate("HawkerLogin")}
-          className="Hawker Rater Button"
-        >
-          <img src={rate} width={50} className="rate-logo"></img>
+        <button onClick={() => navigate("Rater")} className="HawkerRaterButton">
+          <img src={rate} width={600} className="rate-logo"></img>
         </button>
       </div>
       <div className="Hawker-Ranking">
         <button
           //</div>onClick={() => navigate("HawkerLogin")}
-          className="Hawker Ranking Button"
+          className="HawkerRankingButton"
         >
-          <img src={rank} width={50} className="rank-logo"></img>
+          <img src={rank} width={600} className="rank-logo"></img>
         </button>
       </div>
+      <div className="bottompart"></div>
     </div>
   );
 };

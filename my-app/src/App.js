@@ -6,16 +6,18 @@ import { Main } from "./component/MainSreen";
 import { HawkerLogin } from "./component/hawkerLogin";
 import { HawkerMain } from "./component/hawkerMainScreen";
 import { VisitorMain } from "./component/visitorMainScreen";
+import { Rater } from "./component/raterScreen";
 
 export default function App() {
-    return (
-      <Routes>
-        <Route path="/" element={<HomeScreen />}></Route>
-        <Route path="/login" element={<Login />}></Route>
-        <Route path="/login/mainScreen" element={<Main />}></Route>
-        <Route path="/HawkerLogin/HawkerMain" element={<HawkerMain />}></Route>
-        <Route path="/HawkerLogin" element={<HawkerLogin />}></Route>
-        <Route path="/VisitorMain" element={<VisitorMain />}></Route>
-      </Routes>
-    );
+  return (
+    <Routes>
+      <Route path="/" element={<HomeScreen />}></Route>
+      <Route path="/login" element={<Login />}></Route>
+      <Route path="/login/mainScreen" element={<Main />}></Route>
+      <Route path="/HawkerLogin/HawkerMain" element={<HawkerMain />}></Route>
+      <Route path="/HawkerLogin" element={<HawkerLogin />}></Route>
+      <Route path="/VisitorMain" element={<VisitorMain />}></Route>
+      <Route path="/Login/mainScreen/Rater" element={<Rater />}></Route>
+    </Routes>
+  );
 }
