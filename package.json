@@ -8,6 +8,8 @@
     "@mui/styled-engine-sc": "^5.12.0",
     "@supabase/supabase-js": "^2.22.0",
     "@types/material-ui": "^0.21.12",
+    "bootstrap": "^4.6.2",
+    "react-bootstrap": "^2.7.4",
     "styled-components": "^5.3.10"
   }
 }
