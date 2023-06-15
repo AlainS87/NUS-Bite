@@ -61,6 +61,8 @@ export const HawkerMain = () => {
     setError(null);
   };
 
+  const refresh = () => window.location.reload(false);
+
   return (
     <div className="hMS">
       <ResponsiveAppBar />
@@ -111,6 +113,7 @@ export const HawkerMain = () => {
           />
           <br></br>
           <button onClick={() => addStall()}>Submit</button>
+          <button onClick={() => refresh()}>Refresh to see change!</button>
         </Row>
         <hr></hr>
         <h3>Stalls Added</h3>

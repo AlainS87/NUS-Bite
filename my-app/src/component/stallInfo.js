@@ -53,6 +53,9 @@ function StallInfo(props) {
             <>
               <Card.Title>Stall Name: {stalls.name}</Card.Title>
               <Card.Text>Location: {stalls.location}</Card.Text>
+              <Card.Text>Price: {stalls.price}</Card.Text>
+              <Card.Text>Taste: {stalls.taste}</Card.Text>
+              <Card.Text>Comment: {stalls.comment}</Card.Text>
               <Button variant="danger" onClick={() => handleDelete(stalls.id)}>
                 Delete Stall
               </Button>

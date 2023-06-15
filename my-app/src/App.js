@@ -7,6 +7,7 @@ import { HawkerLogin } from "./component/hawkerLogin";
 import { HawkerMain } from "./component/hawkerMainScreen";
 import { VisitorMain } from "./component/visitorMainScreen";
 import { Rater } from "./component/raterScreen";
+import { Ranking } from "./component/ranking";
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
       <Route path="/HawkerLogin" element={<HawkerLogin />}></Route>
       <Route path="/VisitorMain" element={<VisitorMain />}></Route>
       <Route path="/Login/mainScreen/Rater" element={<Rater />}></Route>
+      <Route path="/Login/mainScreen/Ranking" element={<Ranking />}></Route>
     </Routes>
   );
 }
