@@ -11,8 +11,9 @@ export const VisitorContent = (props) => {
                 <CardContent>
                     <Typography>Stall Name: {stalls.name}</Typography>
                     <Typography>Location: {stalls.location}</Typography>
-                    <Typography>Price: {stalls.price}</Typography>
-                    <Typography>Taste: {stalls.taste}</Typography>
+                    <Typography>Price: {stalls.price / stalls.customers}</Typography>
+                    <Typography>Taste: {stalls.taste / stalls.customers}</Typography>
+                    <Typography>Environment: {stalls.environment / stalls.customers}</Typography>
                     <Typography>Comment: {stalls.comment}</Typography>
                 </CardContent>
             </Card>

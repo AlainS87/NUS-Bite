@@ -2,12 +2,13 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
 import Typography from "@mui/material/Typography";
+import { supabase } from "./component/supabaseData";
 
 export default function BasicRating() {
-  const [value1, setValue1] = React.useState(2);
-  const [value2, setValue2] = React.useState(2);
-  const [value3, setValue3] = React.useState(2);
 
+  const [price, setPrice] = React.useState(2);
+  const [taste, setTaste] = React.useState(2);
+  const [environment, setEnvironment] = React.useState(2);
   return (
     <Box
       sx={{
@@ -18,18 +19,18 @@ export default function BasicRating() {
       <Rating
         name="TasteRating"
         precision={0.5}
-        value={value1}
+        value={taste}
         onChange={(event, newValue) => {
-          setValue1(newValue);
+          setTaste(newValue);
         }}
       />
       <Typography component="legend">Environment</Typography>
       <Rating
         name="EnvRating"
         precision={0.5}
-        value={value2}
+        value={environment}
         onChange={(event, newValue) => {
-          setValue2(newValue);
+          setEnvironment(newValue);
         }}
       />
 
@@ -37,16 +38,16 @@ export default function BasicRating() {
       <Rating
         name="PriceRating"
         precision={0.5}
-        value={value3}
+        value={price}
         onChange={(event, newValue) => {
-          setValue3(newValue);
+          setPrice(newValue);
         }}
       />
       <Typography component="legend">Overall</Typography>
       <Rating
         name="read-only"
         precision={0.5}
-        value={(value2 + value1 + value3) / 3}
+        value={(price + taste + environment) / 3}
         readOnly
       />
     </Box>

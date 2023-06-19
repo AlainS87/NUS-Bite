@@ -10,8 +10,6 @@ function StallInfo(props) {
   const [edit, setEdit] = useState(false);
   const [name, setName] = useState("");
   const [location, setLocation] = useState("");
-  const [price, setPrice] = useState(0);
-  const [taste, setTaste] = useState(0);
   const [comment, setComment] = useState("");
 
   const handleDelete = (id) => {
@@ -32,8 +30,6 @@ function StallInfo(props) {
       .update({
         name: name,
         location: location,
-        price: price,
-        taste: taste,
         comment: comment,
       })
       .eq("id", id)
@@ -53,8 +49,6 @@ function StallInfo(props) {
             <>
               <Card.Title>Stall Name: {stalls.name}</Card.Title>
               <Card.Text>Location: {stalls.location}</Card.Text>
-              <Card.Text>Price: {stalls.price}</Card.Text>
-              <Card.Text>Taste: {stalls.taste}</Card.Text>
               <Card.Text>Comment: {stalls.comment}</Card.Text>
               <Button variant="danger" onClick={() => handleDelete(stalls.id)}>
                 Delete Stall
@@ -66,10 +60,6 @@ function StallInfo(props) {
           ) : (
             <>
               <h4>Edit Stall Info</h4>
-              <Button size="sm" onClick={() => setEdit(false)}>
-                Return
-              </Button>
-              <br></br>
               <Form.Label>Stall Name</Form.Label>
               <Form.Control
                 type="text"
@@ -86,20 +76,6 @@ function StallInfo(props) {
                 onChange={(e) => setLocation(e.target.value)}
               />
               <br></br>
-              <Form.Label>Price</Form.Label>
-              <Form.Control
-                type="number"
-                id="price"
-                onChange={(e) => setPrice(e.target.value)}
-              />
-              <br></br>
-              <Form.Label>Taste</Form.Label>
-              <Form.Control
-                type="number"
-                id="taste"
-                onChange={(e) => setTaste(e.target.value)}
-              />
-              <br></br>
               <Form.Label>Comment</Form.Label>
               <Form.Control
                 type="text"
@@ -108,6 +84,9 @@ function StallInfo(props) {
               />
               <br></br>
               <button onClick={() => updateStall(stalls.id)}>Submit</button>
+              <Button size="sm" onClick={() => setEdit(false)}>
+                Return
+              </Button>
             </>
           )}
         </Card.Body>

@@ -17,8 +17,6 @@ import "./hawkerMainScreen.css";
 export const HawkerMain = () => {
   const [name, setName] = useState("");
   const [location, setLocation] = useState("");
-  const [price, setPrice] = useState(0);
-  const [taste, setTaste] = useState(0);
   const [comment, setComment] = useState("");
   const [stalls, setStalls] = useState(null);
   const [error, setError] = useState(null);
@@ -47,8 +45,6 @@ export const HawkerMain = () => {
       .insert({
         name: name,
         location: location,
-        price: price,
-        taste: taste,
         comment: comment,
       })
       .then(({ error }) => {
@@ -89,20 +85,6 @@ export const HawkerMain = () => {
             type="text"
             id="location"
             onChange={(e) => setLocation(e.target.value)}
-          />
-          <br></br>
-          <Form.Label>Price </Form.Label>
-          <Form.Control
-            type="number"
-            id="price"
-            onChange={(e) => setPrice(e.target.value)}
-          />
-          <br></br>
-          <Form.Label>Taste </Form.Label>
-          <Form.Control
-            type="number"
-            id="taste"
-            onChange={(e) => setTaste(e.target.value)}
           />
           <br></br>
           <Form.Label>Comment </Form.Label>
