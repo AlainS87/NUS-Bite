@@ -51,13 +51,13 @@ export const RaterContentWithFilter = ({ stalls, filter }) => {
                   <Card.Title>Stall Name: {stalls.name}</Card.Title>
                   <Card.Text>Location: {stalls.location}</Card.Text>
                   <Card.Text>
-                    Price: {stalls.price / stalls.customers}
+                    Price: {(stalls.price / stalls.customers).toFixed(2)}
                   </Card.Text>
                   <Card.Text>
-                    Taste: {stalls.taste / stalls.customers}
+                    Taste: {(stalls.taste / stalls.customers).toFixed(2)}
                   </Card.Text>
                   <Card.Text>
-                    Environment: {stalls.environment / stalls.customers}
+                    Environment: {(stalls.environment / stalls.customers).toFixed(2)}
                   </Card.Text>
                   <Button variant="secondary" onClick={() => setEdit(true)}>
                     Rate this stall

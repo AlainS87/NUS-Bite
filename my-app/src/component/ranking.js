@@ -13,7 +13,7 @@ export const Ranking = () => {
         supabase
         .from("stalls")
         .select()
-        .order("price", { ascending: false })
+        .order("averageprice", { ascending: false })
         .then(({ data: stalls, error }) => {
             setStalls(stalls);
             setError(error);
