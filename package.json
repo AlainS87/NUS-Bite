@@ -11,5 +11,8 @@
     "bootstrap": "^4.6.2",
     "react-bootstrap": "^2.7.4",
     "styled-components": "^5.3.10"
+  },
+  "devDependencies": {
+    "gh-pages": "^5.0.0"
   }
 }
