@@ -5,7 +5,6 @@ import Typography from "@mui/material/Typography";
 import { supabase } from "./component/supabaseData";
 
 export default function BasicRating() {
-
   const [price, setPrice] = React.useState(2);
   const [taste, setTaste] = React.useState(2);
   const [environment, setEnvironment] = React.useState(2);
