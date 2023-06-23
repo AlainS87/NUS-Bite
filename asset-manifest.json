@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/NUS-Bite-Orbital2023/static/css/main.48a85f48.css",
+    "main.js": "/NUS-Bite-Orbital2023/static/js/main.c762a2dd.js",
+    "static/js/787.28cb0dcd.chunk.js": "/NUS-Bite-Orbital2023/static/js/787.28cb0dcd.chunk.js",
+    "static/media/logoNUSBITE.gif": "/NUS-Bite-Orbital2023/static/media/logoNUSBITE.680836a54e05f5e6a5f4.gif",
+    "static/media/logostatic.svg": "/NUS-Bite-Orbital2023/static/media/logostatic.3128177704154a18150f5848689fdca9.svg",
+    "static/media/rank.svg": "/NUS-Bite-Orbital2023/static/media/rank.8a55f3cddb0e8ded23a26306b13d6c85.svg",
+    "static/media/rate.svg": "/NUS-Bite-Orbital2023/static/media/rate.e53ec63b80b889c0dbfffe244aac76ec.svg",
+    "index.html": "/NUS-Bite-Orbital2023/index.html",
+    "main.48a85f48.css.map": "/NUS-Bite-Orbital2023/static/css/main.48a85f48.css.map",
+    "main.c762a2dd.js.map": "/NUS-Bite-Orbital2023/static/js/main.c762a2dd.js.map",
+    "787.28cb0dcd.chunk.js.map": "/NUS-Bite-Orbital2023/static/js/787.28cb0dcd.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.48a85f48.css",
+    "static/js/main.c762a2dd.js"
+  ]
+}
