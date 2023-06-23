@@ -45,6 +45,10 @@ export const HawkerMain = () => {
       .insert({
         name: name,
         location: location,
+        price: 0,
+        taste: 0,
+        environment: 0,
+        customers: 1,
         comment: comment,
       })
       .then(({ error }) => {
