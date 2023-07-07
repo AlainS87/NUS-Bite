@@ -2,11 +2,11 @@ import React from "react";
 import ResponsiveAppBar from "../Appbar";
 import "../RateScreen.css";
 import { useNavigate } from "react-router-dom";
-import { Container, Nav, Form, Row, Col, Button } from "react-bootstrap";
+import { Container, Nav, Form, Row } from "react-bootstrap";
 import { useState, useEffect, useCallback } from "react";
 import { supabase } from "./supabaseData";
 import BasicRating from "../Ratingfunc";
-import { Input } from "@mui/material";
+import { Input, Button } from "@mui/material";
 import { RaterContent } from "./raterContent";
 import { RaterContentWithFilter } from "./raterContentWithFilter";
 
@@ -43,7 +43,7 @@ export const Rater = () => {
       <ResponsiveAppBar />
       <Container>
         <Input type="text" onChange={(e) => setFilter(e.target.value)}></Input>
-        <Button size="sm" onClick={() => haveFilter(true)}>
+        <Button variant="contained" size="small" onClick={() => haveFilter(true)}>
           Search
         </Button>
         <h3>Stalls we have</h3>

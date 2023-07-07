@@ -1,8 +1,8 @@
 import React from "react";
-import { Card, Button, Form } from "react-bootstrap";
 import { supabase } from "./supabaseData";
 import { useState } from "react";
-import { Typography, Box, Rating } from "@mui/material";
+import { Typography, Box, Rating, Card, Button, CardContent } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 export const RaterContentWithFilter = ({ stalls, filter }) => {
   //const stalls = props.stalls;
@@ -33,7 +33,8 @@ export const RaterContentWithFilter = ({ stalls, filter }) => {
     setEdit(false);
   };
 
-  const refresh = () => window.location.reload(false);
+  const naviate = useNavigate();
+  const confirm = () => naviate("/");
 
   //   function handleRatingChange(value) {
   //     console.log(value);
@@ -44,26 +45,26 @@ export const RaterContentWithFilter = ({ stalls, filter }) => {
     <div>
       {stalls.name.indexOf(filter) !== -1 || filter === {} ? (
         <>
-          <Card>
-            <Card.Body>
+          <Card variant="outlined" style={{ backgroundColor: "#3264B3" }}>
+            <CardContent>
               {edit === false ? (
                 <>
-                  <Card.Title>Stall Name: {stalls.name}</Card.Title>
-                  <Card.Text>Location: {stalls.location}</Card.Text>
-                  <Card.Text>
+                  <Typography>Stall Name: {stalls.name}</Typography>
+                  <Typography>Location: {stalls.location}</Typography>
+                  <Typography>
                     Price: {(stalls.price / stalls.customers).toFixed(2)}
-                  </Card.Text>
-                  <Card.Text>
+                  </Typography>
+                  <Typography>
                     Taste: {(stalls.taste / stalls.customers).toFixed(2)}
-                  </Card.Text>
-                  <Card.Text>
+                  </Typography>
+                  <Typography>
                     Environment: {(stalls.environment / stalls.customers).toFixed(2)}
-                  </Card.Text>
-                  <Button variant="secondary" onClick={() => setEdit(true)}>
+                  </Typography>
+                  <Button variant="contained" onClick={() => setEdit(true)}>
                     Rate this stall
                   </Button>
-                  <Button variant="secondary" onClick={() => refresh()}>
-                    Refresh to see change!
+                  <Button variant="contained" color="success" onClick={() => confirm()}>
+                    Confirm
                   </Button>
                 </>
               ) : (
@@ -111,15 +112,15 @@ export const RaterContentWithFilter = ({ stalls, filter }) => {
                       readOnly
                     />
                   </Box>
-                  <Button size="sm" onClick={() => updateStall(stalls.id)}>
+                  <Button variant="contained" color="success" onClick={() => updateStall(stalls.id)}>
                     Submit
                   </Button>
-                  <Button size="sm" onClick={() => setEdit(false)}>
+                  <Button variant="contained" onClick={() => setEdit(false)}>
                     Return
                   </Button>
                 </>
               )}
-            </Card.Body>
+            </CardContent>
           </Card>
         </>
       ) : (

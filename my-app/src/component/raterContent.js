@@ -1,8 +1,8 @@
 import React from "react";
-import { Card, Button, Form } from "react-bootstrap";
 import { supabase } from "./supabaseData";
 import { useState } from "react";
-import { Typography, Box, Rating } from "@mui/material";
+import { Typography, Box, Rating, Button, Card, CardContent } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 export const RaterContent = (props) => {
   const stalls = props.stalls;
@@ -29,9 +29,11 @@ export const RaterContent = (props) => {
         }
       });
     setEdit(false);
+    alert("updated successfully!");
   };
 
-  const refresh = () => window.location.reload(false);
+  const naviate = useNavigate();
+  const confirm = () => naviate("/");
 
   //   function handleRatingChange(value) {
   //     console.log(value);
@@ -40,22 +42,22 @@ export const RaterContent = (props) => {
 
   return (
     <div>
-      <Card>
-        <Card.Body>
+      <Card variant="outlined" style={{ backgroundColor: "#3264B3" }}>
+        <CardContent>
           {edit === false ? (
             <>
-              <Card.Title>Stall Name: {stalls.name}</Card.Title>
-              <Card.Text>Location: {stalls.location}</Card.Text>
-              <Card.Text>Price: {stalls.price / stalls.customers}</Card.Text>
-              <Card.Text>Taste: {stalls.taste / stalls.customers}</Card.Text>
-              <Card.Text>
-                Environment: {stalls.environment / stalls.customers}
-              </Card.Text>
-              <Button variant="secondary" onClick={() => setEdit(true)}>
+              <Typography style={{ color: "#F0F8FF"}}>Stall Name: {stalls.name}</Typography>
+              <Typography style={{ color: "#F0F8FF"}}>Location: {stalls.location}</Typography>
+              <Typography style={{ color: "#F0F8FF"}}>Price: {(stalls.price / stalls.customers).toFixed(2)}</Typography>
+              <Typography style={{ color: "#F0F8FF"}}>Taste: {(stalls.taste / stalls.customers).toFixed(2)}</Typography>
+              <Typography style={{ color: "#F0F8FF"}}>
+                Environment: {(stalls.environment / stalls.customers).toFixed(2)}
+              </Typography>
+              <Button variant="contained" onClick={() => setEdit(true)}>
                 Rate this stall
               </Button>
-              <Button variant="secondary" onClick={() => refresh()}>
-                Refresh to see change!
+              <Button variant="contained" color="success" onClick={() => confirm()}>
+                Confirm
               </Button>
             </>
           ) : (
@@ -66,7 +68,7 @@ export const RaterContent = (props) => {
                   "& > legend": { mt: 2 },
                 }}
               >
-                <Typography component="legend">Taste</Typography>
+                <Typography component="legend" style={{ color: "#F0F8FF"}}>Taste</Typography>
                 <Rating
                   name="TasteRating"
                   precision={0.5}
@@ -76,7 +78,7 @@ export const RaterContent = (props) => {
                     setTaste(newValue);
                   }}
                 />
-                <Typography component="legend">Environment</Typography>
+                <Typography component="legend" style={{ color: "#F0F8FF"}}>Environment</Typography>
                 <Rating
                   name="EnvRating"
                   precision={0.5}
@@ -86,7 +88,7 @@ export const RaterContent = (props) => {
                   }}
                 />
 
-                <Typography component="legend">Price</Typography>
+                <Typography component="legend" style={{ color: "#F0F8FF"}}>Price</Typography>
                 <Rating
                   name="PriceRating"
                   precision={0.5}
@@ -95,7 +97,7 @@ export const RaterContent = (props) => {
                     setPrice(newValue);
                   }}
                 />
-                <Typography component="legend">Overall</Typography>
+                <Typography component="legend" style={{ color: "#F0F8FF"}}>Overall</Typography>
                 <Rating
                   name="read-only"
                   precision={0.5}
@@ -103,15 +105,15 @@ export const RaterContent = (props) => {
                   readOnly
                 />
               </Box>
-              <Button size="sm" onClick={() => updateStall(stalls.id)}>
+              <Button variant="contained" color="success" onClick={() => updateStall(stalls.id)}>
                 Submit
               </Button>
-              <Button size="sm" onClick={() => setEdit(false)}>
+              <Button variant="contained" onClick={() => setEdit(false)}>
                 Return
               </Button>
             </>
           )}
-        </Card.Body>
+        </CardContent>
       </Card>
     </div>
   );

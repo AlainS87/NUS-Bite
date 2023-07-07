@@ -1,7 +1,8 @@
 import React from "react";
-import { Card, Button, Form } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import { useState } from "react";
 import { supabase } from "./supabaseData";
+import { Button, Card, CardContent, TextField, Typography } from "@mui/material";
 import "./hawkerMainScreen.css";
 
 function StallInfo(props) {
@@ -43,53 +44,59 @@ function StallInfo(props) {
 
   return (
     <div className="stallsadded">
-      <Card style={{ textAlign: "center" }}>
-        <Card.Body key="stalls.id">
+      <Card variant="outlined" style={{ textAlign: "center" }}>
+        <CardContent style={{backgroundColor: "#3264B3"}} key="stalls.id">
           {edit === false ? (
             <>
-              <Card.Title>Stall Name: {stalls.name}</Card.Title>
-              <Card.Text>Location: {stalls.location}</Card.Text>
-              <Card.Text>Comment: {stalls.comment}</Card.Text>
-              <Button variant="danger" onClick={() => handleDelete(stalls.id)}>
+              <Typography variant="body1" style={{ color: "#F0F8FF"}}>Stall Name: {stalls.name}</Typography>
+              <Typography variant="body1"  style={{ color: "#F0F8FF"}}>Location: {stalls.location}</Typography>
+              <Typography variant="body1" style={{ color: "#F0F8FF"}}>Comment: {stalls.comment}</Typography>
+              <Button variant="contained" color="error" onClick={() => handleDelete(stalls.id)}>
                 Delete Stall
               </Button>
-              <Button variant="secondary" onClick={() => setEdit(true)}>
+              <Button variant="contained" onClick={() => setEdit(true)}>
                 Edit Stall Info
               </Button>
             </>
           ) : (
             <>
               <h4>Edit Stall Info</h4>
-              <Form.Label>Stall Name</Form.Label>
-              <Form.Control
+              <Typography style={{ color: "#F0F8FF"}}>Stall Name</Typography>
+              <TextField
                 type="text"
                 id="name"
+                size="small"
+                variant="standard"
                 defaultValue={stalls.name}
                 onChange={(e) => setName(e.target.value)}
               />
               <br></br>
-              <Form.Label>Stall Location</Form.Label>
-              <Form.Control
+              <Typography style={{ color: "#F0F8FF"}}>Stall Location</Typography>
+              <TextField
                 type="text"
                 id="location"
+                size="small"
+                variant="standard"
                 defaultValue={stalls.location}
                 onChange={(e) => setLocation(e.target.value)}
               />
               <br></br>
-              <Form.Label>Comment</Form.Label>
-              <Form.Control
+              <Typography style={{ color: "#F0F8FF"}}>Comment</Typography>
+              <TextField
                 type="text"
                 id="comment"
+                size="small"
+                variant="standard"
                 onChange={(e) => setComment(e.target.value)}
               />
               <br></br>
-              <button onClick={() => updateStall(stalls.id)}>Submit</button>
-              <Button size="sm" onClick={() => setEdit(false)}>
+              <Button variant="contained" onClick={() => updateStall(stalls.id)}>Submit</Button>
+              <Button variant="contained" onClick={() => setEdit(false)}>
                 Return
               </Button>
             </>
           )}
-        </Card.Body>
+        </CardContent>
       </Card>
     </div>
   );

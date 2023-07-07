@@ -3,15 +3,14 @@ import ResponsiveAppBar from "../Appbar";
 import {
   Navbar,
   Container,
-  Nav,
   Form,
   Row,
-  Col,
-  Button,
 } from "react-bootstrap";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, } from "react";
 import StallInfo from "./stallInfo";
 import { supabase } from "./supabaseData";
+import { useNavigate } from "react-router-dom";
+import { Button, TextField, Typography } from "@mui/material";
 import "./hawkerMainScreen.css";
 
 export const HawkerMain = () => {
@@ -40,66 +39,67 @@ export const HawkerMain = () => {
   }, [getStalls]);
 
   const addStall = (event) => {
-    supabase
-      .from("stalls")
-      .insert({
-        name: name,
-        location: location,
-        price: 0,
-        taste: 0,
-        environment: 0,
-        customers: 1,
-        comment: comment,
-      })
-      .then(({ error }) => {
-        if (error) {
-          setError(error);
-        } else {
-          setStalls();
-        }
-      });
-    setError(null);
+      supabase
+        .from("stalls")
+        .insert({
+          name: name,
+          location: location,
+          price: 0,
+          taste: 0,
+          environment: 0,
+          customers: 1,
+          comment: comment,
+        })
+        .then(({ error }) => {
+          if (error) {
+            setError(error);
+            alert("fail to add stall");
+          } else {
+            setStalls();
+          }
+        });
+      setError(null);
+      alert("added successfully!");
   };
 
-  const refresh = () => window.location.reload(false);
+  const navigate = useNavigate();
+  const confirm = () => navigate("/");
 
   return (
     <div className="hMS">
       <ResponsiveAppBar />
-      <Navbar>
-        <Container>
-          <Navbar.Brand>Stalls</Navbar.Brand>
-          <Nav>
-            <Nav.Item>in NUS-Bite</Nav.Item>
-          </Nav>
-        </Container>
-      </Navbar>
       <Container className="container">
         <Row>
           <h3>Add Your Stall</h3>
-          <Form.Label>Stall Name </Form.Label>
-          <Form.Control
+          <TextField
             type="text"
             id="name"
+            size="small"
+            label="Stall Name"
+            variant="standard"
             onChange={(e) => setName(e.target.value)}
           />
           <br></br>
-          <Form.Label>Stall Location </Form.Label>
-          <Form.Control
+          <TextField
             type="text"
             id="location"
+            size="small"
+            label="Stall Location"
+            variant="standard"
             onChange={(e) => setLocation(e.target.value)}
           />
           <br></br>
-          <Form.Label>Comment </Form.Label>
-          <Form.Control
+          <TextField
             type="text"
             id="comment"
+            size="small"
+            label="Comment"
+            variant="standard"
             onChange={(e) => setComment(e.target.value)}
           />
           <br></br>
-          <button onClick={() => addStall()}>Submit</button>
-          <button onClick={() => refresh()}>Refresh to see change!</button>
+          <Button variant="contained" onClick={() => addStall()}>Submit</Button>
+          <Button variant="contained" onClick={() => confirm()}>Confirm</Button>
         </Row>
         <hr></hr>
         <h3>Stalls Added</h3>
