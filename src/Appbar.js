@@ -13,6 +13,9 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import logostatic from "./logostatic.svg";
+import {useAuthContext} from "./auth";
+import {useNavigate} from "react-router-dom";
+import { supabase } from "./component/supabaseData";
 
 const pages = ["Total Ranking", "Price Ranking", "Taste Ranking"];
 const settings = ["Profile", "Account", "Dashboard"];
@@ -20,7 +23,8 @@ const settings = ["Profile", "Account", "Dashboard"];
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-
+  const {userData, logout} = useAuthContext();
+  const navigate = useNavigate();
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -28,13 +32,33 @@ function ResponsiveAppBar() {
     setAnchorElUser(event.currentTarget);
   };
 
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
+  const handleCloseNavMenu = (page) => {
+    setAnchorElUser(null)
   };
+
+  const handleClickNav = (page) => {
+    if (page === "Total Ranking") {
+      navigate(`/Login/mainScreen/Ranking/total`)
+    } else if (page === "Price Ranking") {
+      navigate(`/Login/mainScreen/Ranking/price`)
+    } else if (page === "Taste Ranking") {
+      navigate(`/Login/mainScreen/Ranking/taste`)
+    }
+  }
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  const handleClickLogout = () => {
+    supabase.auth.signOut({
+      provider: "google",
+    }).then(() => {
+      logout();
+      navigate('/')
+    })
+
+  }
 
   return (
     <AppBar position="static">
@@ -89,7 +113,7 @@ function ResponsiveAppBar() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                <MenuItem key={page} onClick={() => handleClickNav(page)}>
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
@@ -118,7 +142,7 @@ function ResponsiveAppBar() {
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={handleCloseNavMenu}
+                onClick={() => handleClickNav(page)}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
                 {page}
@@ -148,11 +172,45 @@ function ResponsiveAppBar() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+              {userData && (
+                <>
+                  <MenuItem onClick={() => {
+                    navigate('/profile')
+                  }}>
+                    <Typography textAlign="center">
+                      Profile
+                    </Typography>
+                  </MenuItem>
+                  <MenuItem >
+                    <Typography textAlign="center">
+                      Account
+                    </Typography>
+                  </MenuItem>
+                  <MenuItem >
+                    <Typography textAlign="center">
+                      Dashboard
+                    </Typography>
+                  </MenuItem>
+                  <MenuItem
+                    onClick={handleClickLogout}
+                  >
+                    <Typography textAlign="center">
+                      Log Out
+                    </Typography>
+                  </MenuItem>
+                </>
+              )}
+              {!userData && (
+                <MenuItem
+                  onClick={() => {
+                    navigate('/login')
+                  }}
+                >
+                  <Typography textAlign="center">
+                    Log In
+                  </Typography>
                 </MenuItem>
-              ))}
+              )}
             </Menu>
           </Box>
         </Toolbar>

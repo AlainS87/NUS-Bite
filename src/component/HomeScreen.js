@@ -5,9 +5,11 @@ import { useNavigate } from "react-router-dom";
 import "../App.css";
 import ResponsiveAppBar from "../Appbar";
 import { HawkerLogin, hawkerLogin } from "./hawkerLogin";
+import {useAuthContext} from "../auth";
 
 export const HomeScreen = () => {
   const navigate = useNavigate();
+  const {userData} = useAuthContext();
   return (
     <div className="App">
       <ResponsiveAppBar />

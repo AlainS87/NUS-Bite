@@ -19,7 +19,7 @@ export const Main = () => {
         <button
           //</div>onClick={() => navigate("HawkerLogin")}
           className="HawkerRankingButton"
-          onClick={() => navigate("Ranking")}
+          onClick={() => navigate("Ranking/price")}
         >
           <img src={rank} width={600} className="rank-logo"></img>
         </button>

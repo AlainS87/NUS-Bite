@@ -3,6 +3,7 @@ import { Card, Button, Form } from "react-bootstrap";
 import { supabase } from "./supabaseData";
 import { useState } from "react";
 import { Typography, Box, Rating } from "@mui/material";
+import LikeButton from "./LikeButton";
 
 export const RaterContent = (props) => {
   const stalls = props.stalls;
@@ -51,6 +52,9 @@ export const RaterContent = (props) => {
               <Card.Text>
                 Environment: {stalls.environment / stalls.customers}
               </Card.Text>
+              <Box>
+                <LikeButton stallId={stalls.id}/>
+              </Box>
               <Button variant="secondary" onClick={() => setEdit(true)}>
                 Rate this stall
               </Button>

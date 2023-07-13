@@ -2,6 +2,7 @@ import "../index.css";
 import { useState, useEffect } from "react";
 import { supabase } from "./supabaseData";
 import { useNavigate } from "react-router-dom";
+import {useAuthContext} from "../auth";
 
 export const Login = () => {
   const navigate = useNavigate();
@@ -10,6 +11,7 @@ export const Login = () => {
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: "google",
     });
+
   }
   //   async function signUp() {
   //     return supabase.auth.signUp(
@@ -26,6 +28,7 @@ export const Login = () => {
   //     )
   //   }
   const [session, setSession] = useState(null);
+  const {login} = useAuthContext();
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -35,6 +38,10 @@ export const Login = () => {
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (session && session.user) {
+        console.log(session.user);
+        login(session.user);
+      }
       setSession(session);
     });
 

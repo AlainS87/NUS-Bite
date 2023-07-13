@@ -8,6 +8,7 @@ import { HawkerMain } from "./component/hawkerMainScreen";
 import { VisitorMain } from "./component/visitorMainScreen";
 import { Rater } from "./component/raterScreen";
 import { Ranking } from "./component/ranking";
+import Profile from "./component/Profile";
 
 export default function App() {
   return (
@@ -19,7 +20,8 @@ export default function App() {
       <Route path="/HawkerLogin" element={<HawkerLogin />}></Route>
       <Route path="/VisitorMain" element={<VisitorMain />}></Route>
       <Route path="/Login/mainScreen/Rater" element={<Rater />}></Route>
-      <Route path="/Login/mainScreen/Ranking" element={<Ranking />}></Route>
+      <Route path="/Login/mainScreen/Ranking/:type" element={<Ranking />}></Route>
+      <Route path={'/profile'} element={<Profile />}/>
     </Routes>
   );
 }
