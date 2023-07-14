@@ -6,10 +6,11 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import LikeButton from "./LikeButton";
+import Comments from "./Comments";
 export const VisitorContent = (props) => {
     const stalls = props.stalls;
     return (
-        <div>
+        <Box width={'400px'} padding={'20px'}>
             <Card variant='outlined'>
                 <CardContent>
                     <Typography>Stall Name: {stalls.name}</Typography>
@@ -17,10 +18,10 @@ export const VisitorContent = (props) => {
                     <Typography>Price: {(stalls.price / stalls.customers).toFixed(2)}</Typography>
                     <Typography>Taste: {(stalls.taste / stalls.customers).toFixed(2)}</Typography>
                     <Typography>Environment: {(stalls.environment / stalls.customers).toFixed(2)}</Typography>
-                    <Typography>Comment: {stalls.comment}</Typography>
                     <LikeButton stallId={stalls.id}/>
+                    <Comments stallId={stalls.id}/>
                 </CardContent>
             </Card>
-        </div>
+        </Box>
     )
 }

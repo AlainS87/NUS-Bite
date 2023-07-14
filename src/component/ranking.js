@@ -5,6 +5,7 @@ import { Container, Row } from 'react-bootstrap';
 import { useState, useEffect, useCallback } from "react";
 import { VisitorContent } from './visitorContent';
 import {useParams} from "react-router-dom";
+import Box from "@mui/material/Box";
 
 export const Ranking = () => {
     const [stalls, setStalls] = useState(null);
@@ -71,14 +72,14 @@ export const Ranking = () => {
           {type.toUpperCase()} RANKING
         </h3>
         <Container>
-        <Row>
+        <Box display={'flex'} flexWrap={'wrap'}>
           {stalls &&
             stalls.map((stalls) => (
               <div>
                 <VisitorContent stalls={stalls} />
               </div>
             ))}
-        </Row>
+        </Box>
         </Container>
     </div>
   )

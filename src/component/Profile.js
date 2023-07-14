@@ -8,6 +8,7 @@ import Button from "@mui/material/Button";
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import {ToastTypes, useToast} from "./Toast";
 import StallList from "./StallList";
+import {useParams} from "react-router-dom";
 function convertImageToBase64(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -26,6 +27,7 @@ export default function Profile() {
   const [profile, setProfile] = useState(null);
   const [favoriteStalls, setFavoriteStalls] = useState([]);
   const {show} = useToast();
+  const {userId} = useParams();
   const handleUpdate = async () => {
     try {
       await supabase
@@ -41,11 +43,18 @@ export default function Profile() {
   }
 
   useEffect(() => {
-    if (userData && !profile) {
+    if (!profile) {
+      let google_id = '';
+      if (userId) {
+        google_id = userId;
+      } else {
+        google_id = userData.id;
+      }
+
       supabase
         .from('users')
         .select()
-        .eq('google_id', userData.id)
+        .eq('google_id', google_id)
         .then((data, error) => {
           if (error) {
 
@@ -63,12 +72,14 @@ export default function Profile() {
         
           stalls(id, name,location,price,taste,comment,environment,customers)
         `)
-        .eq('user_id', userData.id)
+        .eq('user_id', google_id)
         .then(({data, error}) => {
-            setFavoriteStalls(data.map(item => item.stalls))
+          setFavoriteStalls(data.map(item => item.stalls))
         })
     }
-  }, [userData]);
+
+
+  }, [userData, userId]);
 
 
 
@@ -152,12 +163,13 @@ export default function Profile() {
             value={profile?.introduction || ''}
             label={'Introduction'} multiline rows={3} fullWidth/>
         </Box>
-        <Box marginTop={'30px'}>
-          <Button
-            disabled={!profile?.email || !profile?.username}
-            onClick={handleUpdate}
-            variant={'contained'}>Update</Button>
-        </Box>
+        {!userId && (
+          <Box marginTop={'30px'}>
+            <Button
+              onClick={handleUpdate}
+              variant={'contained'}>Update</Button>
+          </Box>
+        )}
 
         <Box>
           <Typography variant={'h5'}>

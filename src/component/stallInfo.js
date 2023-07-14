@@ -1,17 +1,18 @@
 import React from "react";
-import { Card, Button, Form } from "react-bootstrap";
+import {Card, TextField, Box, Typography, Button, CardContent} from '@mui/material';
 import { useState } from "react";
 import { supabase } from "./supabaseData";
 import "./hawkerMainScreen.css";
+import {useAuthContext} from "../auth";
+import Comments from "./Comments";
 
 function StallInfo(props) {
   const stalls = props.stalls;
 
   const [edit, setEdit] = useState(false);
-  const [name, setName] = useState("");
-  const [location, setLocation] = useState("");
+  const [name, setName] = useState(stalls.name || "");
+  const [location, setLocation] = useState(stalls.location || "");
   const [comment, setComment] = useState("");
-
   const handleDelete = (id) => {
     supabase
       .from("stalls")
@@ -20,6 +21,9 @@ function StallInfo(props) {
       .then(({ error }) => {
         if (error) {
           alert("Failed to delete task!");
+        } else {
+          alert("Success to delete!");
+          window.location.reload();
         }
       });
   };
@@ -37,6 +41,9 @@ function StallInfo(props) {
         if (error) {
           console.log(error.message);
           alert("Failed to update task!");
+        } else {
+          // alert("Success to Update!");
+          // window.location.reload();
         }
       });
   };
@@ -44,52 +51,52 @@ function StallInfo(props) {
   return (
     <div className="stallsadded">
       <Card style={{ textAlign: "center" }}>
-        <Card.Body key="stalls.id">
+        <CardContent key="stalls.id">
           {edit === false ? (
             <>
-              <Card.Title>Stall Name: {stalls.name}</Card.Title>
-              <Card.Text>Location: {stalls.location}</Card.Text>
-              <Card.Text>Comment: {stalls.comment}</Card.Text>
-              <Button variant="danger" onClick={() => handleDelete(stalls.id)}>
+              <Typography variant={'h5'}>Stall Name: {stalls.name}</Typography>
+              <Typography variant={'h5'}>Location: {stalls.location}</Typography>
+              <Comments stallId={stalls.id}/>
+              <Button color={'error'} variant={'contained'} onClick={() => handleDelete(stalls.id)}>
                 Delete Stall
               </Button>
-              <Button variant="secondary" onClick={() => setEdit(true)}>
+              <Button style={{marginLeft: '10px'}} variant={'contained'} onClick={() => setEdit(true)}>
                 Edit Stall Info
               </Button>
             </>
           ) : (
             <>
               <h4>Edit Stall Info</h4>
-              <Form.Label>Stall Name</Form.Label>
-              <Form.Control
+              <TextField
+                style={{
+                  marginTop: '20px'
+                }}
+                label={'Stall Name'}
                 type="text"
                 id="name"
-                defaultValue={stalls.name}
+                value={name}
                 onChange={(e) => setName(e.target.value)}
               />
               <br></br>
-              <Form.Label>Stall Location</Form.Label>
-              <Form.Control
+              <TextField
+                style={{
+                  marginTop: '20px'
+                }}
+                label={'Stall Location'}
                 type="text"
                 id="location"
-                defaultValue={stalls.location}
+                value={location}
                 onChange={(e) => setLocation(e.target.value)}
               />
               <br></br>
-              <Form.Label>Comment</Form.Label>
-              <Form.Control
-                type="text"
-                id="comment"
-                onChange={(e) => setComment(e.target.value)}
-              />
               <br></br>
-              <button onClick={() => updateStall(stalls.id)}>Submit</button>
-              <Button size="sm" onClick={() => setEdit(false)}>
+              <Button variant={'contained'} onClick={() => updateStall(stalls.id)}>Submit</Button>
+              <Button variant={'contained'} color={'inherit'} size="sm" onClick={() => setEdit(false)}>
                 Return
               </Button>
             </>
           )}
-        </Card.Body>
+        </CardContent>
       </Card>
     </div>
   );

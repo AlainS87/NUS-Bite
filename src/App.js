@@ -22,6 +22,7 @@ export default function App() {
       <Route path="/Login/mainScreen/Rater" element={<Rater />}></Route>
       <Route path="/Login/mainScreen/Ranking/:type" element={<Ranking />}></Route>
       <Route path={'/profile'} element={<Profile />}/>
+      <Route path={'/profile/:userId'} element={<Profile />}/>
     </Routes>
   );
 }
