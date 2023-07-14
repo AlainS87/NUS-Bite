@@ -59,8 +59,8 @@ export default function Comments({stallId}) {
   return (
     <Box>
       <Box >
-        <Typography variant={'h5'}>Comments</Typography>
-        <List sx={{ width: '100%',  bgcolor: 'background.paper' }}>
+        <Typography variant={'h6'} sx={{ fontStyle: 'italic'}}>Comments</Typography>
+        <List sx={{ width: '100%',  bgColor:"#99CCFF" }}>
           {comments.map(comment => {
             return (
               <ListItem key={comment.id} alignItems="flex-start">
@@ -97,7 +97,7 @@ export default function Comments({stallId}) {
       <Box>
         <TextField
           multiline
-          rows={4}
+          rows={1}
           value={comment}
           onChange={e => {
             setComment(e.target.value)

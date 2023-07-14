@@ -13,8 +13,9 @@ import {
 import { VisitorContent } from './visitorContent';
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import {Stack} from "@mui/material";
+import {Stack, Typography} from "@mui/material";
 import {useNavigate} from "react-router-dom";
+import "./profile.css";
 
 export const VisitorMain = () => {
   const [stalls, setStalls] = useState(null);
@@ -39,11 +40,13 @@ export const VisitorMain = () => {
   }, [getStalls]);
 
   return (
-    <div>
+    <div className='bgc'>
         <ResponsiveAppBar />
-        <h1>Hello visitor!</h1>
+        <br />
+        <Typography variant='h4' sx={{ fontWeight:"bold"}} style={{ color: "#F0F8FF"}}>Hello visitor!</Typography>
         <Stack direction={'row'}>
           <Button
+            style={{color: "#FFFFFF"}}
             onClick={() => {
               navigate(`/Login/mainScreen/Ranking/total`)
             }}
@@ -51,6 +54,7 @@ export const VisitorMain = () => {
             Total Ranking
           </Button>
           <Button
+            style={{color: "#FFFFFF"}}
             onClick={() => {
               navigate(`/Login/mainScreen/Ranking/price`)
             }}
@@ -58,6 +62,7 @@ export const VisitorMain = () => {
             Price Ranking
           </Button>
           <Button
+            style={{color: "#FFFFFF"}}
             onClick={() => {
               navigate(`/Login/mainScreen/Ranking/taste`)
             }}

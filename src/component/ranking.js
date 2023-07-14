@@ -6,6 +6,7 @@ import { useState, useEffect, useCallback } from "react";
 import { VisitorContent } from './visitorContent';
 import {useParams} from "react-router-dom";
 import Box from "@mui/material/Box";
+import "./profile.css";
 
 export const Ranking = () => {
     const [stalls, setStalls] = useState(null);
@@ -66,7 +67,7 @@ export const Ranking = () => {
     }, [getStalls]);
 
   return (
-    <div>
+    <div className='bgc'>
         <ResponsiveAppBar />
         <h3>
           {type.toUpperCase()} RANKING

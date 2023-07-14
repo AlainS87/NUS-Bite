@@ -9,6 +9,8 @@ import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import {ToastTypes, useToast} from "./Toast";
 import StallList from "./StallList";
 import {useParams} from "react-router-dom";
+import "./profile.css";
+
 function convertImageToBase64(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -103,7 +105,7 @@ export default function Profile() {
   }
 
   return (
-    <div className={'App'} style={{paddingBottom:'40px'}}>
+    <div className="bgc">
       <ResponsiveAppBar />
 
       <Box
@@ -131,10 +133,10 @@ export default function Profile() {
             }}
             hidden type={'file'} accept={'image/*'}/>
         </label>
-        <Typography color={'white'} marginTop={'30px'} variant={'h3'}>
+        <Typography color={'white'} marginTop={'20px'} variant={'h3'}>
           {profile?.username}
         </Typography>
-        <Box width={'40%'} marginTop={'20px'}>
+        <Box width={'40%'} marginTop={'10px'}>
           <TextField
             onChange={e => {
               setProfile({
@@ -145,7 +147,7 @@ export default function Profile() {
             value={profile?.username || ''}
             label={'Username'} fullWidth/>
         </Box>
-        <Box width={'40%'} marginTop={'20px'}>
+        <Box width={'40%'} marginTop={'10px'}>
           <TextField
             onChange={e => {
               setProfile({
@@ -156,7 +158,7 @@ export default function Profile() {
             value={profile?.email || userData?.email || ''}
             label={'Email'} fullWidth/>
         </Box>
-        <Box width={'40%'} marginTop={'20px'}>
+        <Box width={'40%'} marginTop={'10px'}>
           <TextField
             onChange={e => {
               setProfile({
@@ -179,16 +181,17 @@ export default function Profile() {
             label={'Introduction'} multiline rows={3} fullWidth/>
         </Box>
         {!userId && (
-          <Box marginTop={'30px'}>
+          <Box marginTop={'20px'}>
             <Button
               onClick={handleUpdate}
-              variant={'contained'}>Update</Button>
+              variant={'contained'}
+              size="large">Update Profile</Button>
           </Box>
         )}
-
+        <br />
         <Box>
-          <Typography variant={'h5'}>
-            Favorites
+          <Typography variant={'h5'} style={{ color: "#F0F8FF"}}>
+            My Favorites
           </Typography>
           <StallList stalls={favoriteStalls}/>
         </Box>

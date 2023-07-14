@@ -3,6 +3,9 @@ import { useState, useEffect } from "react";
 import { supabase } from "./supabaseData";
 import { useNavigate } from "react-router-dom";
 import {useAuthContext} from "../auth";
+import { Button, Card, CardMedia, Box, CardContent, Typography} from "@mui/material";
+import "./profile.css";
+import stallcard from "../stallcard.jpg";
 
 export const Login = () => {
   const navigate = useNavigate();
@@ -50,8 +53,14 @@ export const Login = () => {
 
   if (!session) {
     return (
-      <div>
-        <button onClick={signInWithGoogle}>Sign In</button>
+      <div className="login">
+        <Card className="photo" style={{backgroundColor:"#99CCFF"}}>
+          <CardMedia component="img" sx={{ height: 500, objectFit: "contain" }} image={stallcard}></CardMedia>
+          <CardContent>
+            <Typography variant="h3" style={{ color: "#F0F8FF"}}>Welcome!</Typography>
+          </CardContent>
+          <Button variant="contained" size="large" onClick={signInWithGoogle}>Sign In</Button>
+        </Card>
       </div>
     );
   } else {

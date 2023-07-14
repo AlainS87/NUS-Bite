@@ -1,10 +1,11 @@
 import React from "react";
-import {Card, TextField, Box, Typography, Button, CardContent} from '@mui/material';
+import {Card, TextField, Box, Typography, Button, CardContent, CardMedia} from '@mui/material';
 import { useState } from "react";
 import { supabase } from "./supabaseData";
 import "./hawkerMainScreen.css";
 import {useAuthContext} from "../auth";
 import Comments from "./Comments";
+import stallcard from "../stallcard.jpg";
 
 function StallInfo(props) {
   const stalls = props.stalls;
@@ -50,17 +51,19 @@ function StallInfo(props) {
 
   return (
     <div className="stallsadded">
-      <Card style={{ textAlign: "center" }}>
+      <Card style={{ textAlign: "center", backgroundColor:"#99CCFF"}}>
         <CardContent key="stalls.id">
           {edit === false ? (
             <>
-              <Typography variant={'h5'}>Stall Name: {stalls.name}</Typography>
-              <Typography variant={'h5'}>Location: {stalls.location}</Typography>
+              <CardMedia component="img" sx={{ height: 160, objectFit: "contain" }} image={stallcard}/>
+              <Typography variant={'h6'} sx={{ fontStyle: 'italic'}}>Stall Name: {stalls.name}</Typography>
+              <Typography variant={'h6'} sx={{ fontStyle: 'italic'}}>Location: {stalls.location}</Typography>
               <Comments stallId={stalls.id}/>
-              <Button color={'error'} variant={'contained'} onClick={() => handleDelete(stalls.id)}>
+              <br />
+              <Button variant={'contained'} onClick={() => handleDelete(stalls.id)}>
                 Delete Stall
               </Button>
-              <Button style={{marginLeft: '10px'}} variant={'contained'} onClick={() => setEdit(true)}>
+              <Button style={{marginLeft: '5px'}} variant={'contained'} onClick={() => setEdit(true)}>
                 Edit Stall Info
               </Button>
             </>

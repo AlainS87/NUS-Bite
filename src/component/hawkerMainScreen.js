@@ -13,7 +13,7 @@ import StallInfo from "./stallInfo";
 import { supabase } from "./supabaseData";
 import "./hawkerMainScreen.css";
 import {useAuthContext} from "../auth";
-import {Stack, TextField, Button, Grid} from "@mui/material";
+import {Stack, TextField, Button, Grid, Typography} from "@mui/material";
 import Box from "@mui/material/Box";
 
 export const HawkerMain = () => {
@@ -75,18 +75,16 @@ export const HawkerMain = () => {
       <ResponsiveAppBar />
       <Navbar>
         <Container>
-          <Navbar.Brand>Stalls</Navbar.Brand>
-          <Nav>
-            <Nav.Item>in NUS-Bite</Nav.Item>
-          </Nav>
+          <br />
+          <Typography variant="h6" style={{ color: "#F0F8FF"}}>Stalls in NUS-Bite</Typography>
         </Container>
       </Navbar>
       <Container className="container">
         <Row>
-          <h3>Add Your Stall</h3>
+          <Typography variant="h6" style={{ color: "#F0F8FF"}}>Add Your Stall</Typography>
           <TextField
             style={{
-              marginTop: '20px'
+              marginTop: '10px'
             }}
             label={'Stall Name'}
             type="text"
@@ -96,7 +94,7 @@ export const HawkerMain = () => {
           <br></br>
           <TextField
             style={{
-              marginTop: '20px'
+              marginTop: '10px'
             }}
             label={'Stall Location'}
             type="text"
@@ -106,18 +104,19 @@ export const HawkerMain = () => {
           <br></br>
 
 
-          <Box marginTop={'30px'}>
+          <Box marginTop={'15px'}>
             <Button variant={'contained'} onClick={() => addStall()}>Submit</Button>
-            <Button variant={'contained'} color={'inherit'}
+            <Button variant={'contained'}
                     style={{
-                      marginLeft: '15px'
+                      marginLeft: '5px',
+                      color: "#F0F8FF"
                     }}
                     onClick={() => refresh()}>Refresh to see change!</Button>
           </Box>
         </Row>
         <hr></hr>
-        <h3>Stalls Added</h3>
-        <Box padding={'30px'}>
+        <Typography variant="h6" style={{ color: "#F0F8FF"}}>Stalls Added</Typography>
+        <Box padding={'20px'}>
           <Grid container spacing={2}>
             {stalls &&
               stalls.map((stalls) => (

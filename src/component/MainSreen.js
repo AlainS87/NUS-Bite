@@ -24,7 +24,6 @@ export const Main = () => {
           <img src={rank} width={600} className="rank-logo"></img>
         </button>
       </div>
-      <div className="bottompart"></div>
     </div>
   );
 };

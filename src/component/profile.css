@@ -1,0 +1,18 @@
+.bgc{
+    background-color: #3264B3;
+    height: 1950px;
+    text-align: center;
+}
+.login{
+    background-color:#99CCFF;
+    height: 1000px;
+    text-align: center;
+}
+.photo{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 900px;
+    height: 700px;
+}
