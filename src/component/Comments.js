@@ -31,7 +31,9 @@ export default function Comments({stallId}) {
         .eq('stall_id', stallId)
         .then(({data, error}) => {
           if (data) {
-            setComments(data);
+            setComments([...data].sort((prev, next) => {
+              return new Date(next.created_at).getTime() - new Date(prev.created_at).getTime()
+            }));
           }
         })
     }

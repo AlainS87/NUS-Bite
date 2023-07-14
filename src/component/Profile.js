@@ -48,34 +48,37 @@ export default function Profile() {
       if (userId) {
         google_id = userId;
       } else {
-        google_id = userData.id;
+        google_id = userData?.id;
       }
 
-      supabase
-        .from('users')
-        .select()
-        .eq('google_id', google_id)
-        .then((data, error) => {
-          if (error) {
+      if (google_id) {
+        supabase
+          .from('users')
+          .select()
+          .eq('google_id', google_id)
+          .then((data, error) => {
+            if (error) {
 
-          } else {
-            if (data && data.data && data.data[0]) {
-              setProfile({...data.data[0]});
+            } else {
+              if (data && data.data && data.data[0]) {
+                setProfile({...data.data[0]});
+              }
             }
-          }
-        })
+          })
 
-      supabase
-        .from('favorites')
-        .select(`
+        supabase
+          .from('favorites')
+          .select(`
           id,
         
           stalls(id, name,location,price,taste,comment,environment,customers)
         `)
-        .eq('user_id', google_id)
-        .then(({data, error}) => {
-          setFavoriteStalls(data.map(item => item.stalls))
-        })
+          .eq('user_id', google_id)
+          .then(({data, error}) => {
+            setFavoriteStalls(data.map(item => item.stalls))
+          })
+      }
+
     }
 
 
