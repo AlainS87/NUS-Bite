@@ -28,14 +28,25 @@ export default function Profile() {
   const [favoriteStalls, setFavoriteStalls] = useState([]);
   const {show} = useToast();
   const {userId} = useParams();
+  const [user, setUser] = useState();
   const handleUpdate = async () => {
     try {
-      await supabase
-        .from('users')
-        .update(profile)
-        .eq('google_id', userData.id)
-        .select();
-      show(ToastTypes.SUCCESS, 'Update success!');
+      if (!user) {
+        await supabase
+          .from('users')
+          .insert([
+            {...profile, google_id: userData.id}
+          ]);
+        show(ToastTypes.SUCCESS, 'Update success!');
+      } else {
+        await supabase
+          .from('users')
+          .update(profile)
+          .eq('google_id', userData.id)
+          .select();
+        show(ToastTypes.SUCCESS, 'Update success!');
+      }
+
 
     } catch (err) {
 
@@ -62,6 +73,7 @@ export default function Profile() {
             } else {
               if (data && data.data && data.data[0]) {
                 setProfile({...data.data[0]});
+                setUser(data.data[0])
               }
             }
           })
