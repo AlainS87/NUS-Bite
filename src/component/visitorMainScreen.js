@@ -43,7 +43,7 @@ export const VisitorMain = () => {
     <div className='bgc'>
         <ResponsiveAppBar />
         <br />
-        <Typography variant='h4' sx={{ fontWeight:"bold"}} style={{ color: "#F0F8FF"}}>Hello visitor!</Typography>
+        <Typography variant='h4' sx={{ fontWeight:"bold"}} style={{ color: "#F0F8FF"}}>Welcome to NUS-Bite!</Typography>
         <Stack direction={'row'}>
           <Button
             style={{color: "#FFFFFF"}}
