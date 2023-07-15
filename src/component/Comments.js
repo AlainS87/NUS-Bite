@@ -15,11 +15,13 @@ import SendIcon from '@mui/icons-material/Send';
 import IconButton from "@mui/material/IconButton";
 import {useAuthContext} from "../auth";
 import {Link} from "react-router-dom";
+import DeleteIcon from '@mui/icons-material/Delete';
 export default function Comments({stallId}) {
   const {userData} = useAuthContext();
   const [comments, setComments] = useState([]);
   const [comment, setComment] = useState('');
   const [reload, setReload] = useState(true);
+
   useEffect(() => {
     if (stallId) {
       supabase
@@ -56,6 +58,18 @@ export default function Comments({stallId}) {
     }
   }
 
+  const handleClickRemoveComment = async (id) => {
+    try {
+      await supabase
+        .from('comments')
+        .delete()
+        .eq('id', id);
+      setReload(!reload);
+    } catch (err) {
+
+    }
+  }
+
   return (
     <Box>
       <Box >
@@ -85,6 +99,13 @@ export default function Comments({stallId}) {
                       </Typography>
                       <p>
                         {new Date(comment.created_at).toLocaleString()}
+                        {comment.users.google_id === userData?.id && (
+                          <IconButton onClick={() => {
+                            handleClickRemoveComment(comment.id)
+                          }} color={'error'}>
+                            <DeleteIcon />
+                          </IconButton>
+                        )}
                       </p>
                     </React.Fragment>
                   }
