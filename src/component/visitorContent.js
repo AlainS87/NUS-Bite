@@ -12,7 +12,7 @@ import stallcard from "../stallcard.jpg";
 export const VisitorContent = (props) => {
     const stalls = props.stalls;
     return (
-        <Box width={'400px'} padding={'10px'}>
+        <Box width={'300px'} padding={'10px'}>
             <Card variant='outlined' style={{backgroundColor:"#99CCFF"}}>
                 <CardContent>
                 <CardMedia component="img" sx={{ height: 130, objectFit: "contain" }} image={stallcard}/>
